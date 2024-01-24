@@ -50,7 +50,7 @@ def click_on_image(image_path):
 def join_google_meeting(driver, link, available_cable):
     def open_website(url):
         webbrowser.open(url, new=2)  # new=2 opens in a new tab, if possible
-
+    time.sleep(2)
     open_website(link)
 
     time.sleep(10)  # wait for the page to load
