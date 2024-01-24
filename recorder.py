@@ -86,9 +86,11 @@ class Recorder:
         #end_meeting_image = 'zoombot_images\\meeting_ended_notification2.png'
         #confidence_threshold = 0.90
         if 'zoom' in self.link.lower():
+            leave_meeting_image = 'zoombot_images\\leave_meeting_button.png'  
             end_meeting_image = 'zoombot_images\\meeting_ended_notification2.png'
             confidence_threshold = 0.90
         elif 'google' in self.link.lower():
+            leave_meeting_image = 'meetbot_images\\leave_meeting_button.png' 
             end_meeting_image = 'meetbot_images\\meeting_end_button.png'
             confidence_threshold = 0.99
         else:
@@ -114,10 +116,27 @@ class Recorder:
                 if confidence > best_confidence:
                     best_confidence = confidence
 
+            # if best_confidence > confidence_threshold:
+            #     print(f"End meeting notification found. Confidence: {best_confidence}")
+            #     await self.stop_recording()
+            #     break
             if best_confidence > confidence_threshold:
                 print(f"End meeting notification found. Confidence: {best_confidence}")
+
+                # Find and click the Leave Meeting button
+                try:
+                    leave_button_pos = pyautogui.locateCenterOnScreen(leave_meeting_image, confidence=0.9)
+                    if leave_button_pos is not None:
+                        pyautogui.click(leave_button_pos)
+                        print("Clicked Leave Meeting button.")
+                    else:
+                        print("Leave Meeting button not found.")
+                except Exception as e:
+                    print(f"Error occurred while clicking Leave Meeting button: {e}")
+
                 await self.stop_recording()
                 break
+
 
             await asyncio.sleep(CHECK_FREQUENCY)
 
