@@ -123,7 +123,7 @@ def join_meeting(driver, meeting_link, audio_cable_image):
                     time.sleep(5)  # Wait for 5 seconds before searching again
                     continue
                 else:
-                    print()
+                    print(f"Clicked on {image}. Confidence: {best_confidence}")
                     pyautogui.click(x, y)
             else:
                 # Click on the found image
