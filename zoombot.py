@@ -300,6 +300,21 @@ def join_meeting(driver, meeting_link, audio_cable_image):
 
             if image == 'zoombot_images\\join_audio_by_computer.PNG':
                 while True:
+                    resized_template = cv2.resize(template_gray, None, fx=scale, fy=scale, interpolation=cv2.INTER_AREA)
+                        screenshot = np.array(pyautogui.screenshot())
+                        screenshot_gray = cv2.cvtColor(screenshot, cv2.COLOR_RGB2GRAY)
+            
+                        match = cv2.matchTemplate(screenshot_gray, resized_template, cv2.TM_CCOEFF_NORMED)
+                        _, confidence, _, _ = cv2.minMaxLoc(match)
+            
+                        if confidence > best_confidence:
+                            best_confidence = confidence
+                            best_match = match
+                            best_scale = scale
+            
+                    _, _, _, best_loc = cv2.minMaxLoc(best_match)
+                    w, h = (template.shape[1] * best_scale, template.shape[0] * best_scale)
+                    x, y = (best_loc[0] + w / 2, best_loc[1] + h / 2)
                     if best_confidence >= 0.7:
                         print(f"Clicked on {image}. Confidence: {best_confidence}")
                         pyautogui.click(x, y)
