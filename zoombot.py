@@ -245,7 +245,7 @@ def join_meeting(driver, meeting_link, audio_cable_image):
               #'zoombot_images\\test_speaker_button.png']
     
     # Corresponding sleep times
-    sleep_times = [3, 5, 3, 3, 5, 3, 30,5,5,5]
+    sleep_times = [3, 5, 3, 3, 5, 3, 10,5,5,5]
     
     # Loop over each image
     for image, sleep_time in zip(images, sleep_times):
