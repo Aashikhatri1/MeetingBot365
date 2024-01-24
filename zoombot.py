@@ -120,7 +120,7 @@ def join_meeting(driver, meeting_link, audio_cable_image):
             if image == 'zoombot_images\\join_audio_by_computer.PNG':
                 if best_confidence < 0.7:  # Increase this threshold value as needed
                     print(f"{image} not found. Confidence: {best_confidence}")
-                    time.sleep(5)  # Wait for 5 seconds before searching again
+                    time.sleep(2)  # Wait for 5 seconds before searching again
                     continue
                 else:
                     print(f"Clicked on {image}. Confidence: {best_confidence}")
