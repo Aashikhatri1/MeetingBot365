@@ -62,14 +62,15 @@ def check_new_submissions():
                                 print('Document status updated successfully.')
                                 
                                 # Run join_meeting with link as argument
-                                driver = create_browser_instance()
+                                
                                 print('Joining the meeting...')
                                 if 'zoom' in link:
+                                    driver = create_browser_instance()
                                     join_meeting(driver, link, available_cable)
                                 #elif 'teams' in link:
                                 #    join_teams_meeting(driver, link, available_cable)
                                 elif 'google' in link:
-                                    join_google_meeting(driver, link, available_cable)  
+                                    join_google_meeting('driver', link, available_cable)  
                                 else:
                                     print('Unknown meeting link type.')
                                     
