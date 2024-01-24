@@ -245,7 +245,7 @@ def join_meeting(driver, meeting_link, audio_cable_image):
               #'zoombot_images\\test_speaker_button.png']
     
     # Corresponding sleep times
-    sleep_times = [3, 5, 3, 3, 5, 3, 30,5,5,5,3,3,3,3,3]
+    sleep_times = [3, 5, 3, 3, 5, 3, 30,5,5,5]
     
     # Loop over each image
     for image, sleep_time in zip(images, sleep_times):
@@ -297,7 +297,8 @@ def join_meeting(driver, meeting_link, audio_cable_image):
             if (best_confidence < 0.4 and image != audio_cable_image) or \
                (image == audio_cable_image and best_confidence < 0.94):
                 print(f"{image} not found. Confidence: {best_confidence}")
-
+            if image == 'zoombot_images\\mute_button.png':
+                break
             # if image == 'zoombot_images\\join_audio_by_computer.PNG':
             #     while True:  # Inner loop for continuous searching
             #     # Take a screenshot
