@@ -9,3 +9,4 @@ PyScreeze==0.1.29
 boto3
 numpy
 deepgram-sdk
+openai==0.28
